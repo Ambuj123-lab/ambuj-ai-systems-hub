@@ -465,14 +465,19 @@ body {
   background: rgba(0, 0, 0, 0.5); /* Inner background */
 }
 
-/* The spinning electric current line */
+/* The spinning electric current line (4 distinct colors) */
 .hero-photo-wrapper::before {
   content: '';
   position: absolute;
   top: 50%; left: 50%;
   width: 150%; height: 150%;
-  background: conic-gradient(from 0deg, transparent 70%, #00f0ff 90%, transparent 100%);
-  animation: spin 3s linear infinite;
+  background: conic-gradient(from 0deg,
+    transparent 0deg,   rgba(0, 240, 255, 0.1) 20deg, #00f0ff 40deg, transparent 45deg,
+    transparent 90deg,  rgba(255, 51, 102, 0.1) 110deg, #ff3366 130deg, transparent 135deg,
+    transparent 180deg, rgba(0, 255, 102, 0.1) 200deg, #00ff66 220deg, transparent 225deg,
+    transparent 270deg, rgba(168, 85, 247, 0.1) 290deg, #a855f7 310deg, transparent 315deg
+  );
+  animation: spin 3.5s linear infinite;
   transform-origin: 0 0;
   transform: translate(-50%, -50%);
   z-index: -1;
@@ -484,13 +489,18 @@ body {
   position: absolute;
   top: 50%; left: 50%;
   width: 150%; height: 150%;
-  background: conic-gradient(from 0deg, transparent 70%, #00f0ff 90%, transparent 100%);
-  animation: spin 3s linear infinite;
+  background: conic-gradient(from 0deg,
+    transparent 0deg,   rgba(0, 240, 255, 0.1) 20deg, #00f0ff 40deg, transparent 45deg,
+    transparent 90deg,  rgba(255, 51, 102, 0.1) 110deg, #ff3366 130deg, transparent 135deg,
+    transparent 180deg, rgba(0, 255, 102, 0.1) 200deg, #00ff66 220deg, transparent 225deg,
+    transparent 270deg, rgba(168, 85, 247, 0.1) 290deg, #a855f7 310deg, transparent 315deg
+  );
+  animation: spin 3.5s linear infinite;
   transform-origin: 0 0;
   transform: translate(-50%, -50%);
   z-index: -2;
-  filter: blur(8px);
-  opacity: 0.7;
+  filter: blur(10px);
+  opacity: 0.8;
 }
 
 /* Ensure the image stays on top and perfectly rounded */
