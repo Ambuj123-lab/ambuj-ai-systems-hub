@@ -41,7 +41,7 @@ const itemVariants = {
   }
 };
 
-const UPTIME_API_KEY = 'ur3293690-5a09e92504e29189fadf3be2';
+const UPTIME_API_KEY = process.env.NEXT_PUBLIC_UPTIME_API_KEY || 'ur3293690-5a09e92504e29189fadf3be2';
 
 const TECH_STACK = [
   'Gemini', 'Claude', 'Qwen', 'DeepSeek', 'LangGraph', 'LangFuse',
@@ -200,13 +200,27 @@ export default function Home() {
           </div>
           <div className="status-grid">
             {services.length > 0 ? services.map(([name, data]) => (
-              <a key={name} href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" className="status-item" style={{ textDecoration: 'none', color: 'inherit' }}>
-                <div className="status-name">{name}</div>
-                <div className="status-value" style={{ color: data.status === 'Up' ? 'var(--accent-green)' : 'var(--accent-red)' }}>
-                  <span className={`status-dot ${data.status === 'Up' ? 'up' : 'down'}`} />
-                  {data.status === 'Up' ? 'Online' : 'Offline'}
+              <a key={name} href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" className="status-item group" style={{ textDecoration: 'none', color: 'inherit' }}>
+                <div className="status-item-inner">
+                  {/* FRONT */}
+                  <div className="status-front">
+                    <div className="status-name">{name}</div>
+                    {data.status === 'Down' ? (
+                      <div className="status-value" style={{ color: 'var(--text-muted)' }}>--</div>
+                    ) : (
+                      <div className="status-value" style={{ color: 'var(--accent-green)' }}>
+                        <span className="status-dot up" />
+                        Online
+                      </div>
+                    )}
+                  </div>
+                  
+                  {/* BACK */}
+                  <div className="status-back">
+                    <div className="status-name">{name}</div>
+                    <div className="status-uptime">{data.uptime}% · {data.latency}ms</div>
+                  </div>
                 </div>
-                <div className="status-uptime">{data.uptime}% · {data.latency}ms</div>
               </a>
             )) : (
               <>
