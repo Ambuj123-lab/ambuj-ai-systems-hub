@@ -24,6 +24,11 @@ export const metadata = {
     creator: '@Ambuj_KTripathi',
     images: ['/og-image.jpeg'],
   },
+  icons: {
+    icon: '/og-image.jpeg',
+    shortcut: '/og-image.jpeg',
+    apple: '/og-image.jpeg',
+  },
   robots: { index: true, follow: true },
 };
 

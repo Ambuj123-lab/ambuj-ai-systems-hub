@@ -114,6 +114,54 @@ export default function Home() {
             <a href="https://ambuj-rag-docs.netlify.app/" target="_blank" rel="noreferrer" className="btn-docs">📚 Docs</a>
             <a href="https://ambuj-ai-portfolio.vercel.app" target="_blank" rel="noreferrer" className="btn-docs">🌐 Full Portfolio</a>
           </div>
+          
+          {/* ═══ LIVE UPTIME BADGES (MOVED TO HERO) ═══ */}
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', width: '100%', marginTop: '2rem' }}>
+            {services.length > 0 ? services.map(([name, data]) => (
+              <a key={name} href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" className="status-badge-container group" style={{ textDecoration: 'none', color: 'inherit', perspective: '1000px', width: '165px', height: '36px', display: 'block' }}>
+                <div className="status-badge-inner" style={{ position: 'relative', width: '100%', height: '100%', transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)', transformStyle: 'preserve-3d', borderRadius: '40px', background: 'rgba(0, 0, 0, 0.85)', border: '1px solid rgba(255, 255, 255, 0.08)', cursor: 'pointer' }}>
+                  
+                  {/* FRONT */}
+                  <div className="status-badge-front" style={{ position: 'absolute', width: '100%', height: '100%', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '0 12px' }}>
+                    {data.status === 'Down' ? (
+                      <>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '3px', color: '#ff3366' }}>
+                          <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 16px #ff3366, 0 0 24px rgba(255, 51, 102, 0.8)', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        </div>
+                        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#e4e4e7', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{name}</div>
+                      </>
+                    ) : (
+                      <>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '3px', color: '#ff3366' }}>
+                          <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 16px #ff3366, 0 0 24px rgba(255, 51, 102, 0.8)', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        </div>
+                        <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#e4e4e7', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{name}</div>
+                      </>
+                    )}
+                  </div>
+                  
+                  {/* BACK */}
+                  <div className="status-badge-back" style={{ position: 'absolute', width: '100%', height: '100%', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateX(180deg)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', background: 'rgba(10, 10, 15, 0.95)', borderRadius: '40px', border: '1px solid rgba(0, 240, 255, 0.4)' }}>
+                    <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#00f0ff' }}>{data.uptime}%</div>
+                    <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.3)' }} />
+                    <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#a1a1aa' }}>{data.latency}ms</div>
+                  </div>
+
+                </div>
+              </a>
+            )) : (
+              ['Financial Parser', 'Legal AI', 'Citizen Safety', 'Portfolio'].map(name => (
+                <div key={name} className="status-badge-container" style={{ width: '165px', height: '36px' }}>
+                  <div className="status-badge-inner" style={{ width: '100%', height: '100%', borderRadius: '40px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                    <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1.5 }} style={{ width: '6px', height: '6px', border: '1px solid #71717a', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+                    <div style={{ fontSize: '0.7rem', color: '#71717a', fontWeight: 500 }}>{name}</div>
+                  </div>
+                </div>
+              ))
+            )}
+          </div>
         </motion.div>
 
         {/* ═══ PROJECT 1: Financial Parser ═══ */}
@@ -259,54 +307,6 @@ export default function Home() {
 
           {/* Bottom Copyright Row */}
           <div className="footer-bottom" style={{ flexDirection: 'column', gap: '24px', alignItems: 'center', marginTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '2rem' }}>
-            
-            {/* Live Uptime Heartbeat Badges */}
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', width: '100%', justifyContent: 'center' }}>
-              {services.length > 0 ? services.map(([name, data]) => (
-                <a key={name} href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" className="status-badge-container group" style={{ textDecoration: 'none', color: 'inherit', perspective: '1000px', width: '180px', height: '42px', display: 'block' }}>
-                  <div className="status-badge-inner" style={{ position: 'relative', width: '100%', height: '100%', transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)', transformStyle: 'preserve-3d', borderRadius: '40px', background: 'rgba(0, 0, 0, 0.7)', border: '1px solid rgba(255, 255, 255, 0.08)', cursor: 'pointer' }}>
-                    
-                    {/* FRONT */}
-                    <div className="status-badge-front" style={{ position: 'absolute', width: '100%', height: '100%', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '0 16px' }}>
-                      {data.status === 'Down' ? (
-                        <>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#ff3366' }}>
-                            <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 10px #ff3366', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                          </div>
-                          <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#e4e4e7', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{name}</div>
-                        </>
-                      ) : (
-                        <>
-                          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#ff3366' }}>
-                            <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 10px #ff3366', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                          </div>
-                          <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#e4e4e7', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{name}</div>
-                        </>
-                      )}
-                    </div>
-                    
-                    {/* BACK */}
-                    <div className="status-badge-back" style={{ position: 'absolute', width: '100%', height: '100%', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateX(180deg)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: 'rgba(10, 10, 15, 0.9)', borderRadius: '40px', border: '1px solid rgba(0, 240, 255, 0.3)' }}>
-                      <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#00f0ff' }}>{data.uptime}%</div>
-                      <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.3)' }} />
-                      <div style={{ fontSize: '0.8rem', fontWeight: 600, color: '#a1a1aa' }}>{data.latency}ms</div>
-                    </div>
-
-                  </div>
-                </a>
-              )) : (
-                ['Financial Parser', 'Legal AI', 'Citizen Safety', 'Portfolio'].map(name => (
-                  <div key={name} className="status-badge-container" style={{ width: '180px', height: '42px' }}>
-                    <div className="status-badge-inner" style={{ width: '100%', height: '100%', borderRadius: '40px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-                      <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1.5 }} style={{ width: '8px', height: '8px', border: '1.5px solid #71717a', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
-                      <div style={{ fontSize: '0.75rem', color: '#71717a', fontWeight: 500 }}>{name}</div>
-                    </div>
-                  </div>
-                ))
-              )}
-            </div>
             
             <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
               <span>Designed & Engineered by © Ambuj Kumar Tripathi</span>
