@@ -161,59 +161,6 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* ═══ SYSTEM STATUS ═══ */}
-        <motion.div variants={itemVariants} className="bento-card card-status">
-          <div className="card-label" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span className="badge-dot" />
-            System Status — Live
-          </div>
-          <div className="status-grid">
-            {services.length > 0 ? services.map(([name, data]) => (
-              <a key={name} href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" className="status-item group" style={{ textDecoration: 'none', color: 'inherit' }}>
-                <div className="status-item-inner">
-                  {/* FRONT */}
-                  <div className="status-front">
-                    <div className="status-name">{name}</div>
-                    {data.status === 'Down' ? (
-                      <div className="status-value" style={{ color: 'var(--text-muted)' }}>--</div>
-                    ) : (
-                      <div className="status-value" style={{ color: 'var(--accent-green)' }}>
-                        <span className="status-dot up" />
-                        Online
-                      </div>
-                    )}
-                  </div>
-                  
-                  {/* BACK */}
-                  <div className="status-back">
-                    <div className="status-name">{name}</div>
-                    <div className="status-uptime">{data.uptime}% · {data.latency}ms</div>
-                  </div>
-                </div>
-              </a>
-            )) : (
-              <>
-                {['Financial Parser', 'Legal AI', 'Citizen Safety', 'Portfolio'].map(name => (
-                  <div key={name} className="status-item">
-                    <div className="status-item-inner" style={{ background: 'rgba(255,255,255,0.02)', borderColor: 'rgba(255,255,255,0.05)' }}>
-                      <div className="status-front">
-                        <div className="status-name">{name}</div>
-                        <div className="status-value" style={{ color: 'var(--text-muted)' }}>
-                          <motion.span 
-                            animate={{ opacity: [0.3, 1, 0.3] }} 
-                            transition={{ repeat: Infinity, duration: 1.5 }}
-                            style={{ display: 'inline-block', width: '12px', height: '12px', border: '2px solid var(--text-muted)', borderTopColor: 'transparent', borderRadius: '50%', marginRight: '6px', animation: 'spin 1s linear infinite' }} 
-                          />
-                          Loading...
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </>
-            )}
-          </div>
-        </motion.div>
 
         {/* ═══ AGGREGATED METRICS ═══ */}
         <motion.div variants={itemVariants} className="bento-card card-metrics">
@@ -301,11 +248,57 @@ export default function Home() {
           </div>
 
           {/* Bottom Copyright Row */}
-          <div className="footer-bottom">
-            <span>Designed & Engineered by © Ambuj Kumar Tripathi</span>
-            <a href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', color: 'var(--accent-green)', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '6px' }}>
-              All systems operational 🟢
-            </a>
+          <div className="footer-bottom" style={{ flexDirection: 'column', gap: '24px', alignItems: 'center', marginTop: '2rem', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '2rem' }}>
+            
+            {/* Live Uptime Heartbeat Badges */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '14px', width: '100%', justifyContent: 'center' }}>
+              {services.length > 0 ? services.map(([name, data]) => (
+                <a key={name} href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" className="status-badge-container group" style={{ textDecoration: 'none', color: 'inherit', perspective: '1000px', width: '180px', height: '42px', display: 'block' }}>
+                  <div className="status-badge-inner" style={{ position: 'relative', width: '100%', height: '100%', transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)', transformStyle: 'preserve-3d', borderRadius: '40px', background: 'rgba(0, 0, 0, 0.7)', border: '1px solid rgba(255, 255, 255, 0.08)', cursor: 'pointer' }}>
+                    
+                    {/* FRONT */}
+                    <div className="status-badge-front" style={{ position: 'absolute', width: '100%', height: '100%', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '0 16px' }}>
+                      {data.status === 'Down' ? (
+                        <>
+                          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 12px #ff3366', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
+                          <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#e4e4e7', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{name}</div>
+                        </>
+                      ) : (
+                        <>
+                          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#00ff66', boxShadow: '0 0 12px #00ff66', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
+                          <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#e4e4e7', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{name}</div>
+                        </>
+                      )}
+                    </div>
+                    
+                    {/* BACK */}
+                    <div className="status-badge-back" style={{ position: 'absolute', width: '100%', height: '100%', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateX(180deg)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', background: 'rgba(10, 10, 15, 0.9)', borderRadius: '40px', border: '1px solid rgba(0, 240, 255, 0.3)' }}>
+                      <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#00f0ff' }}>{data.uptime}%</div>
+                      <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.3)' }} />
+                      <div style={{ fontSize: '0.8rem', fontWeight: 600, color: '#a1a1aa' }}>{data.latency}ms</div>
+                    </div>
+
+                  </div>
+                </a>
+              )) : (
+                ['Financial Parser', 'Legal AI', 'Citizen Safety', 'Portfolio'].map(name => (
+                  <div key={name} className="status-badge-container" style={{ width: '180px', height: '42px' }}>
+                    <div className="status-badge-inner" style={{ width: '100%', height: '100%', borderRadius: '40px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                      <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1.5 }} style={{ width: '8px', height: '8px', border: '1.5px solid #71717a', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+                      <div style={{ fontSize: '0.75rem', color: '#71717a', fontWeight: 500 }}>{name}</div>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+            
+            <div style={{ width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '10px' }}>
+              <span>Designed & Engineered by © Ambuj Kumar Tripathi</span>
+              <a href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', color: 'var(--text-muted)', fontSize: '0.8rem', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#00ff66', boxShadow: '0 0 8px #00ff66' }} />
+                UptimeRobot Live Monitoring
+              </a>
+            </div>
           </div>
 
         </motion.div>
