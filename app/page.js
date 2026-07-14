@@ -41,7 +41,7 @@ const itemVariants = {
   }
 };
 
-const UPTIME_API_KEY = process.env.NEXT_PUBLIC_UPTIME_API_KEY || 'ur3293690-5a09e92504e29189fadf3be2';
+const UPTIME_API_KEY = process.env.NEXT_PUBLIC_UPTIME_API_KEY;
 
 const TECH_STACK = [
   'Gemini', 'Claude', 'Qwen', 'DeepSeek', 'LangGraph', 'LangFuse',
