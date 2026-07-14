@@ -41,8 +41,6 @@ const itemVariants = {
   }
 };
 
-const UPTIME_API_KEY = process.env.NEXT_PUBLIC_UPTIME_API_KEY;
-
 const TECH_STACK = [
   'Gemini', 'Claude', 'Qwen', 'DeepSeek', 'LangGraph', 'LangFuse',
   'Redis', 'FastAPI', 'Docker', 'Render', 'Pinecone', 'Qdrant',
@@ -52,43 +50,14 @@ const TECH_STACK = [
 export default function Home() {
   const [uptimeData, setUptimeData] = useState(null);
 
-  // Fetch UptimeRobot Data
+  // Fetch UptimeRobot Data via server-side proxy (bypasses CORS)
   useEffect(() => {
     const fetchUptime = async () => {
       try {
-        const res = await fetch('https://api.uptimerobot.com/v2/getMonitors', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: `api_key=${UPTIME_API_KEY}&format=json&response_times=1&custom_uptime_ratios=30`
-        });
-        const data = await res.json();
-        if (data.stat === 'ok' && data.monitors) {
-          const formatted = {};
-          let totalUptime = 0;
-          let validMonitors = 0;
-          
-          data.monitors.forEach(m => {
-            let key = m.friendly_name;
-            if (key.includes('financial-parser')) key = 'Financial Parser';
-            else if (key.includes('indian-legal')) key = 'Legal AI';
-            else if (key.includes('citizen-safety')) key = 'Citizen Safety';
-            else if (key.includes('ambuj-portfolio-v2')) key = 'Portfolio';
-            
-            const uptimeVal = parseFloat(m.custom_uptime_ratio);
-            if (!isNaN(uptimeVal)) {
-              totalUptime += uptimeVal;
-              validMonitors++;
-            }
-            
-            formatted[key] = {
-              status: m.status === 2 ? 'Up' : 'Down',
-              uptime: uptimeVal.toFixed(2),
-              latency: m.response_times?.[0]?.value || '--'
-            };
-          });
-          
-          const avgUptime = validMonitors > 0 ? (totalUptime / validMonitors) : 99.7;
-          setUptimeData({ services: formatted, average: avgUptime });
+        const res = await fetch('/api/uptime');
+        if (res.ok) {
+          const data = await res.json();
+          setUptimeData(data);
         }
       } catch (e) {
         console.error('Uptime fetch failed:', e);
