@@ -96,7 +96,9 @@ export default function Home() {
 
         {/* ═══ HERO CARD ═══ */}
         <motion.div variants={itemVariants} className="bento-card card-hero">
-          <img src="/og-image.jpeg" alt="Ambuj Kumar Tripathi" className="hero-photo" />
+          <div className="hero-photo-wrapper">
+            <img src="/og-image.jpeg" alt="Ambuj Kumar Tripathi" className="hero-photo" />
+          </div>
           <h1 className="hero-name">Ambuj Kumar<br/>Tripathi</h1>
           <p className="hero-title" style={{ marginBottom: '8px' }}>AI Engineer & RAG Systems Architect</p>
           <p className="hero-typewriter" style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.5', maxWidth: '90%' }}>
@@ -115,58 +117,57 @@ export default function Home() {
             <a href="https://ambuj-ai-portfolio.vercel.app" target="_blank" rel="noreferrer" className="btn-docs">🌐 Full Portfolio</a>
           </div>
           
-          {/* ═══ LIVE UPTIME BADGES (MOVED TO HERO) ═══ */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', width: '100%', marginTop: '2rem' }}>
-            {services.length > 0 ? services.map(([name, data]) => (
-              <a key={name} href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" className="status-badge-container group" style={{ textDecoration: 'none', color: 'inherit', perspective: '1000px', width: '165px', height: '36px', display: 'block' }}>
-                <div className="status-badge-inner" style={{ position: 'relative', width: '100%', height: '100%', transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)', transformStyle: 'preserve-3d', borderRadius: '40px', background: 'rgba(0, 0, 0, 0.85)', border: '1px solid rgba(255, 255, 255, 0.08)', cursor: 'pointer' }}>
-                  
-                  {/* FRONT */}
-                  <div className="status-badge-front" style={{ position: 'absolute', width: '100%', height: '100%', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '0 12px' }}>
-                    {data.status === 'Down' ? (
-                      <>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '3px', color: '#ff3366' }}>
-                          <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 16px #ff3366, 0 0 24px rgba(255, 51, 102, 0.8)', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                        </div>
-                        <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#e4e4e7', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{name}</div>
-                      </>
-                    ) : (
-                      <>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '3px', color: '#ff3366' }}>
-                          <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 16px #ff3366, 0 0 24px rgba(255, 51, 102, 0.8)', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                        </div>
-                        <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#e4e4e7', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{name}</div>
-                      </>
-                    )}
+          {/* ═══ PORTFOLIO LIVE UPTIME (AUTO-FLIP) ═══ */}
+          <div style={{ marginTop: '1.5rem' }}>
+            {services.length > 0 && services.find(s => s[0] === 'Portfolio') ? (() => {
+              const [name, data] = services.find(s => s[0] === 'Portfolio');
+              return (
+                <a href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" className="status-badge-container" style={{ textDecoration: 'none', color: 'inherit', perspective: '1000px', width: '165px', height: '36px', display: 'block' }}>
+                  <div className="status-badge-inner auto-flip" style={{ position: 'relative', width: '100%', height: '100%', transformStyle: 'preserve-3d', borderRadius: '40px', background: 'rgba(0, 0, 0, 0.85)', border: '1px solid rgba(255, 255, 255, 0.08)', cursor: 'pointer' }}>
+                    {/* FRONT */}
+                    <div className="status-badge-front" style={{ position: 'absolute', width: '100%', height: '100%', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '0 12px' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '3px', color: data.status === 'Down' ? '#ff3366' : '#ff3366' }}>
+                        <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 16px #ff3366, 0 0 24px rgba(255, 51, 102, 0.8)', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                      </div>
+                      <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#e4e4e7', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>Portfolio Live</div>
+                    </div>
+                    {/* BACK */}
+                    <div className="status-badge-back" style={{ position: 'absolute', width: '100%', height: '100%', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateX(180deg)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', background: 'rgba(10, 10, 15, 0.95)', borderRadius: '40px', border: '1px solid rgba(0, 240, 255, 0.4)' }}>
+                      <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#00f0ff' }}>{data.uptime}%</div>
+                      <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.3)' }} />
+                      <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#a1a1aa' }}>{data.latency}ms</div>
+                    </div>
                   </div>
-                  
-                  {/* BACK */}
-                  <div className="status-badge-back" style={{ position: 'absolute', width: '100%', height: '100%', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateX(180deg)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', background: 'rgba(10, 10, 15, 0.95)', borderRadius: '40px', border: '1px solid rgba(0, 240, 255, 0.4)' }}>
-                    <div style={{ fontSize: '0.75rem', fontWeight: 700, color: '#00f0ff' }}>{data.uptime}%</div>
-                    <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: 'rgba(255,255,255,0.3)' }} />
-                    <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#a1a1aa' }}>{data.latency}ms</div>
-                  </div>
-
+                </a>
+              );
+            })() : (
+              <div className="status-badge-container" style={{ width: '165px', height: '36px' }}>
+                <div className="status-badge-inner" style={{ width: '100%', height: '100%', borderRadius: '40px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
+                  <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1.5 }} style={{ width: '6px', height: '6px', border: '1px solid #71717a', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
+                  <div style={{ fontSize: '0.7rem', color: '#71717a', fontWeight: 500 }}>Portfolio</div>
                 </div>
-              </a>
-            )) : (
-              ['Financial Parser', 'Legal AI', 'Citizen Safety', 'Portfolio'].map(name => (
-                <div key={name} className="status-badge-container" style={{ width: '165px', height: '36px' }}>
-                  <div className="status-badge-inner" style={{ width: '100%', height: '100%', borderRadius: '40px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}>
-                    <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ repeat: Infinity, duration: 1.5 }} style={{ width: '6px', height: '6px', border: '1px solid #71717a', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
-                    <div style={{ fontSize: '0.7rem', color: '#71717a', fontWeight: 500 }}>{name}</div>
-                  </div>
-                </div>
-              ))
+              </div>
             )}
           </div>
         </motion.div>
 
         {/* ═══ PROJECT 1: Financial Parser ═══ */}
         <motion.div variants={itemVariants} className="bento-card card-project1">
-          <div className="project-tag tag-financial">💰 Live System</div>
+          {services.length > 0 && services.find(s => s[0] === 'Financial Parser') ? (
+            (() => {
+              const data = services.find(s => s[0] === 'Financial Parser')[1];
+              return (
+                <a href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1.5rem', background: 'rgba(0,0,0,0.6)', width: 'fit-content', padding: '6px 14px', borderRadius: '30px', border: '1px solid rgba(255,255,255,0.08)', cursor: 'pointer' }}>
+                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 16px #ff3366, 0 0 24px rgba(255,51,102,0.8)', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff3366" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#00f0ff', marginLeft: '4px' }}>{data.uptime}% <span style={{color: '#a1a1aa', fontWeight: 600}}>• {data.latency}ms</span></span>
+                </a>
+              );
+            })()
+          ) : (
+            <div className="project-tag tag-financial">💰 Live System</div>
+          )}
           <h2 className="project-impact"><span className="gradient-text">Adaptive ReAct</span> Omnichannel RAG Platform</h2>
           <p className="project-desc">A 9-Node LangGraph Agent with dual-path web search, Pinecone hybrid search, and Meta WhatsApp Cloud API integration.</p>
           <div className="project-techs">
@@ -177,18 +178,44 @@ export default function Home() {
 
         {/* ═══ PROJECT 2: Legal AI ═══ */}
         <motion.div variants={itemVariants} className="bento-card card-project2">
-          <div className="project-tag tag-legal">⚖️ Live System</div>
+          {services.length > 0 && services.find(s => s[0] === 'Legal AI') ? (
+            (() => {
+              const data = services.find(s => s[0] === 'Legal AI')[1];
+              return (
+                <a href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1.5rem', background: 'rgba(0,0,0,0.6)', width: 'fit-content', padding: '6px 14px', borderRadius: '30px', border: '1px solid rgba(255,255,255,0.08)', cursor: 'pointer' }}>
+                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 16px #ff3366, 0 0 24px rgba(255,51,102,0.8)', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff3366" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#00f0ff', marginLeft: '4px' }}>{data.uptime}% <span style={{color: '#a1a1aa', fontWeight: 600}}>• {data.latency}ms</span></span>
+                </a>
+              );
+            })()
+          ) : (
+            <div className="project-tag tag-legal">⚖️ Live System</div>
+          )}
           <h2 className="project-impact"><span className="gradient-text">Agentic Legal AI</span> (Confidence-Gated HITL & Intent Routing)</h2>
           <p className="project-desc">Processed 31,500+ chunks across 20+ legal acts with Parent-Child Chunking. Secure OAuth 2.0 multi-tenant vector search on Qdrant. 5.6K+ HuggingFace downloads.</p>
           <div className="project-techs">
             <span>Qdrant</span><span>Supabase</span><span>OAuth 2.0</span><span>React</span><span>HuggingFace</span>
           </div>
-          <a href="https://indian-legal-ai-expert.onrender.com/" target="_blank" rel="noreferrer" className="project-link">Live Demo →</a>
+          <a href="https://huggingface.co/spaces/invincibleambuj/Agentic-AI-Legal-Assistant" target="_blank" rel="noreferrer" className="project-link">Live Demo →</a>
         </motion.div>
 
         {/* ═══ PROJECT 3: Citizen Safety ═══ */}
         <motion.div variants={itemVariants} className="bento-card card-project3">
-          <div className="project-tag tag-safety">🚨 Live System</div>
+          {services.length > 0 && services.find(s => s[0] === 'Citizen Safety') ? (
+            (() => {
+              const data = services.find(s => s[0] === 'Citizen Safety')[1];
+              return (
+                <a href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1.5rem', background: 'rgba(0,0,0,0.6)', width: 'fit-content', padding: '6px 14px', borderRadius: '30px', border: '1px solid rgba(255,255,255,0.08)', cursor: 'pointer' }}>
+                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 16px #ff3366, 0 0 24px rgba(255,51,102,0.8)', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff3366" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#00f0ff', marginLeft: '4px' }}>{data.uptime}% <span style={{color: '#a1a1aa', fontWeight: 600}}>• {data.latency}ms</span></span>
+                </a>
+              );
+            })()
+          ) : (
+            <div className="project-tag tag-safety">🚨 Live System</div>
+          )}
           <h2 className="project-impact"><span className="gradient-text">Secure Linear RAG</span> & PII Anonymization</h2>
           <p className="project-desc">Deployed spaCy-driven trilingual routing with intelligent 112/100 emergency fallback signaling and PII anonymization.</p>
           <div className="project-techs">
