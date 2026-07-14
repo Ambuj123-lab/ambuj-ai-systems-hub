@@ -195,9 +195,19 @@ export default function Home() {
               <>
                 {['Financial Parser', 'Legal AI', 'Citizen Safety', 'Portfolio'].map(name => (
                   <div key={name} className="status-item">
-                    <div className="status-name">{name}</div>
-                    <div className="status-value" style={{ color: 'var(--text-muted)' }}>--</div>
-                    <div className="status-uptime">Loading...</div>
+                    <div className="status-item-inner" style={{ background: 'rgba(255,255,255,0.02)', borderColor: 'rgba(255,255,255,0.05)' }}>
+                      <div className="status-front">
+                        <div className="status-name">{name}</div>
+                        <div className="status-value" style={{ color: 'var(--text-muted)' }}>
+                          <motion.span 
+                            animate={{ opacity: [0.3, 1, 0.3] }} 
+                            transition={{ repeat: Infinity, duration: 1.5 }}
+                            style={{ display: 'inline-block', width: '12px', height: '12px', border: '2px solid var(--text-muted)', borderTopColor: 'transparent', borderRadius: '50%', marginRight: '6px', animation: 'spin 1s linear infinite' }} 
+                          />
+                          Loading...
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </>
