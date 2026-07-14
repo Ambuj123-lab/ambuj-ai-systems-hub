@@ -205,21 +205,31 @@ export default function Home() {
         </motion.div>
 
         {/* ═══ SAAS FOOTER ═══ */}
-        <motion.div variants={itemVariants} className="card-footer">
+        <motion.div variants={itemVariants} className="card-footer" style={{ padding: '3rem 2rem 1rem' }}>
           
-          {/* Column 1: Brand & Description */}
-          <div className="footer-col">
-            <div className="footer-brand">AMBUJ<span>.AI</span></div>
-            <div className="footer-desc">
-              Building production-ready Agentic AI applications and specialized Legal/Financial LLMs.
-            </div>
-            {/* Keeping the QR code but styled for this column */}
-            <a href="https://ambuj-ai-portfolio.vercel.app" target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: '10px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)', padding: '6px', borderRadius: '8px', textDecoration: 'none', width: 'fit-content', marginTop: '4px' }}>
-              <img src="/qr-code.png" alt="QR Code" style={{ width: '36px', height: '36px', borderRadius: '4px', background: '#fff', padding: '2px' }} />
-              <div style={{ fontSize: '0.65rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>
-                Scan to explore<br/><strong style={{ color: 'var(--accent-cyan)' }}>Full AI Portfolio</strong>
+          {/* Column 1: Brand & Connect Box (like reference image) */}
+          <div className="footer-col" style={{ gap: '1.5rem' }}>
+            <div>
+              <div className="footer-brand">AMBUJ<span>.AI</span></div>
+              <div className="footer-desc" style={{ marginTop: '0.5rem' }}>
+                Building production-ready Agentic AI applications and specialized Legal/Financial LLMs.
               </div>
-            </a>
+            </div>
+            
+            {/* Connect with the Architect Box */}
+            <div style={{ background: 'rgba(20,20,25,0.6)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '16px', padding: '16px', width: 'fit-content' }}>
+              <div style={{ fontWeight: 700, fontSize: '0.9rem', marginBottom: '12px', color: '#fff' }}>Connect with the Architect</div>
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                {/* QR Code Placeholder (Uses a standard generated QR or fallback to a crisp white box with logo) */}
+                <div style={{ width: '70px', height: '70px', background: '#fff', borderRadius: '8px', padding: '4px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                   <img src="/qr-code.png" alt="QR" style={{ width: '100%', height: '100%', objectFit: 'contain' }} onError={(e) => { e.target.style.display='none'; e.target.parentNode.innerHTML='<div style="width:100%;height:100%;background:#000;display:flex;align-items:center;justify-content:center;border-radius:4px;"><span style="color:#fff;font-weight:bold;font-size:10px;">QR</span></div>' }} />
+                </div>
+                <div style={{ fontSize: '0.8rem', color: '#a1a1aa', lineHeight: '1.5' }}>
+                  Scan or click to view my<br/>
+                  <a href="https://ambuj-ai-portfolio.vercel.app" target="_blank" rel="noreferrer" style={{ color: 'var(--accent-amber)', fontWeight: 700, textDecoration: 'none' }}>Micro-Portfolio</a> & Resume.
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Column 2: Live Systems */}
@@ -257,16 +267,22 @@ export default function Home() {
                   <div className="status-badge-inner" style={{ position: 'relative', width: '100%', height: '100%', transition: 'transform 0.6s cubic-bezier(0.4, 0, 0.2, 1)', transformStyle: 'preserve-3d', borderRadius: '40px', background: 'rgba(0, 0, 0, 0.7)', border: '1px solid rgba(255, 255, 255, 0.08)', cursor: 'pointer' }}>
                     
                     {/* FRONT */}
-                    <div className="status-badge-front" style={{ position: 'absolute', width: '100%', height: '100%', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '0 16px' }}>
+                    <div className="status-badge-front" style={{ position: 'absolute', width: '100%', height: '100%', backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', padding: '0 16px' }}>
                       {data.status === 'Down' ? (
                         <>
-                          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 12px #ff3366', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#ff3366' }}>
+                            <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 10px #ff3366', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                          </div>
                           <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#e4e4e7', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{name}</div>
                         </>
                       ) : (
                         <>
-                          <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#00ff66', boxShadow: '0 0 12px #00ff66', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
-                          <div style={{ fontSize: '0.75rem', fontWeight: 600, color: '#e4e4e7', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{name}</div>
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#ff3366' }}>
+                            <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 10px #ff3366', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                          </div>
+                          <div style={{ fontSize: '0.8rem', fontWeight: 700, color: '#e4e4e7', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{name}</div>
                         </>
                       )}
                     </div>
