@@ -3,14 +3,14 @@ import Script from 'next/script';
 
 export const metadata = {
   title: "Ambuj's AI Systems Hub | Live Agentic RAG",
-  description: "Explore my top 3 production AI systems. Talk to my live LangGraph Agent directly to know about my architecture, stack, and resume.",
-  keywords: ['AI Engineer', 'RAG', 'LangGraph', 'Agentic AI', 'Full Stack Developer', 'Ambuj Kumar Tripathi'],
+  description: "Explore my top 3 AI systems. Talk to my live LangGraph Agent featuring real-time Web Search, WhatsApp Webhooks, and direct answers about my architecture.",
+  keywords: ['AI Engineer', 'RAG', 'LangGraph', 'Agentic AI', 'Web Search', 'Webhook', 'Ambuj Kumar Tripathi'],
   authors: [{ name: 'Ambuj Kumar Tripathi' }],
   creator: 'Ambuj Kumar Tripathi',
   metadataBase: new URL('https://ambuj-ai-systems-hub.vercel.app'),
   openGraph: {
     title: "Ambuj's AI Systems Hub | Live Agentic RAG",
-    description: "Explore my top 3 production AI systems. Talk to my live LangGraph Agent directly to know about my architecture, stack, and resume.",
+    description: "Explore my top 3 AI systems. Talk to my live LangGraph Agent featuring real-time Web Search, WhatsApp Webhooks, and direct answers about my architecture.",
     url: 'https://ambuj-ai-systems-hub.vercel.app',
     siteName: 'Ambuj.AI',
     images: [{ url: '/og-image.jpeg', width: 1200, height: 630, alt: 'Ambuj AI Systems Hub' }],
@@ -20,7 +20,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: "Ambuj's AI Systems Hub | Live Agentic RAG",
-    description: "Explore my top 3 production AI systems. Talk to my live LangGraph Agent directly to know about my architecture, stack, and resume.",
+    description: "Explore my top 3 AI systems. Talk to my live LangGraph Agent featuring real-time Web Search, WhatsApp Webhooks, and direct answers about my architecture.",
     creator: '@Ambuj_KTripathi',
     images: ['/og-image.jpeg'],
   },
