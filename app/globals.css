@@ -453,35 +453,60 @@ body {
   100% { transform: scale(1); opacity: 1; }
 }
 
-/* ═══════ LOGO ANIMATED BORDER GLOW ═══════ */
+/* ═══════ LOGO ANIMATED BORDER GLOW (ELECTRIC CURRENT) ═══════ */
 .hero-photo-wrapper {
   position: relative;
   width: 90px;
   height: 90px;
   border-radius: 20px;
   z-index: 1;
+  padding: 1.5px; /* Thin border thickness */
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.5); /* Inner background */
 }
 
-.hero-photo-wrapper::before, .hero-photo-wrapper::after {
+/* The spinning electric current line */
+.hero-photo-wrapper::before {
   content: '';
   position: absolute;
-  top: -3px; right: -3px; bottom: -3px; left: -3px;
-  border-radius: 22px;
-  background: linear-gradient(45deg, #ff3366, #ff9933, #00ff66, #00f0ff, #ff3366, #8a2be2);
-  background-size: 300% 300%;
-  animation: rgb-glow 4s linear infinite;
+  top: 50%; left: 50%;
+  width: 150%; height: 150%;
+  background: conic-gradient(from 0deg, transparent 70%, #00f0ff 90%, transparent 100%);
+  animation: spin 3s linear infinite;
+  transform-origin: 0 0;
+  transform: translate(-50%, -50%);
   z-index: -1;
 }
 
+/* The slight glow of the electric current */
 .hero-photo-wrapper::after {
-  filter: blur(12px);
-  opacity: 0.85;
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 150%; height: 150%;
+  background: conic-gradient(from 0deg, transparent 70%, #00f0ff 90%, transparent 100%);
+  animation: spin 3s linear infinite;
+  transform-origin: 0 0;
+  transform: translate(-50%, -50%);
+  z-index: -2;
+  filter: blur(8px);
+  opacity: 0.7;
 }
 
-@keyframes rgb-glow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+/* Ensure the image stays on top and perfectly rounded */
+.hero-photo {
+  width: 100%;
+  height: 100%;
+  border-radius: 19px;
+  object-fit: cover;
+  position: relative;
+  z-index: 2;
+  background: #000;
+}
+
+@keyframes spin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 .status-front, .status-back {
@@ -731,7 +756,7 @@ body {
   }
 
   .hero-name { font-size: 1.5rem; }
-  .hero-photo { width: 70px; height: 70px; border-radius: 14px; }
+  .hero-photo-wrapper { width: 70px; height: 70px; }
   .bento-card { padding: 1.2rem; border-radius: 16px; }
   .bento-card:hover { transform: none; }
 
@@ -750,7 +775,7 @@ body {
 @media (max-width: 380px) {
   .portfolio-container { padding: 0.8rem 0.6rem 1.5rem; }
   .hero-name { font-size: 1.3rem; }
-  .hero-photo { width: 60px; height: 60px; }
+  .hero-photo-wrapper { width: 60px; height: 60px; }
   .project-impact { font-size: 0.95rem; }
   .status-grid { grid-template-columns: 1fr; }
 }
