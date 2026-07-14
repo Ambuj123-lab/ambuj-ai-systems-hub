@@ -339,7 +339,7 @@ export default function Home() {
           <div className="footer-col">
             <div className="footer-col-title">Resources</div>
             <a href="https://ambuj-rag-docs.netlify.app/" target="_blank" rel="noreferrer" className="footer-col-link">Documentation</a>
-            <a href="/resume.pdf" target="_blank" className="footer-col-link">Resume (PDF)</a>
+            <a href="/Ambuj_Agentic_Gen_Ai_CV.pdf" target="_blank" className="footer-col-link">Resume (PDF)</a>
             <a href="https://huggingface.co/invincibleambuj" target="_blank" rel="noreferrer" className="footer-col-link">Hugging Face Models</a>
           </div>
 
