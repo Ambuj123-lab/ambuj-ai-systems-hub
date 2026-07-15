@@ -6,9 +6,10 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
 const QUICK_PROMPTS = [
-  "What RAG systems have you built?",
-  "Explain your LangGraph architecture",
-  "What's your tech stack?",
+  "What makes Ambuj stand out as an AI Engineer?",
+  "Show production systems Ambuj has deployed",
+  "Explain the LangGraph architecture",
+  "What scale has Ambuj handled?",
 ];
 
 export default function ChatWidget() {

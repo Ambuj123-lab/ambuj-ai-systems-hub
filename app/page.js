@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
+import { motion, useMotionValue, useTransform, animate, useInView, AnimatePresence } from 'framer-motion';
 import ChatWidget from '../components/ChatWidget';
 
 function AnimatedCounter({ from = 0, to, duration = 2.5, decimals = 0 }) {
@@ -27,7 +27,7 @@ const containerVariants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 }
+    transition: { staggerChildren: 0.18, delayChildren: 0.4 }
   }
 };
 
@@ -47,8 +47,17 @@ const TECH_STACK = [
   'OpenRouter', 'Google Cloud', 'Supabase', 'React', 'Next.js', 'MongoDB'
 ];
 
+const ROTATING_TAGLINES = [
+  "Building 9-Node LangGraph Agents with Dual-Path Routing",
+  "5,600+ HuggingFace Downloads on Fine-Tuned Legal LLMs",
+  "Sub-100ms Semantic Caching with Redis Pipelines",
+  "31,500+ Legal Vectors Indexed with Jina MRL Embeddings",
+  "Production WhatsApp Bot via Meta Cloud API",
+];
+
 export default function Home() {
   const [uptimeData, setUptimeData] = useState(null);
+  const [taglineIndex, setTaglineIndex] = useState(0);
 
   // Fetch UptimeRobot Data via server-side proxy (bypasses CORS)
   useEffect(() => {
@@ -68,23 +77,39 @@ export default function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  // Rotating tagline
+  useEffect(() => {
+    const taglineInterval = setInterval(() => {
+      setTaglineIndex(prev => (prev + 1) % ROTATING_TAGLINES.length);
+    }, 3500);
+    return () => clearInterval(taglineInterval);
+  }, []);
+
   const services = uptimeData?.services ? Object.entries(uptimeData.services) : [];
   const avgUptime = uptimeData?.average || 99.7;
 
   return (
     <>
-      <div className="bg-noise"></div>
+      <div className="bg-grid"></div>
       
       <div className="portfolio-container">
 
       {/* Header */}
-      <header className="header">
-        <div className="header-logo">AMBUJ<span>.AI</span></div>
+      <motion.header 
+        className="header"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
+          <div className="header-logo">AMBUJ<span>.AI</span></div>
+          <div className="stealth-badge">◉ Stealth Mode</div>
+        </div>
         <div className="header-badge">
           <span className="badge-dot" />
           Open to Roles
         </div>
-      </header>
+      </motion.header>
 
       {/* Bento Grid */}
       <motion.div 
@@ -101,9 +126,21 @@ export default function Home() {
           </div>
           <h1 className="hero-name">Ambuj Kumar<br/>Tripathi</h1>
           <p className="hero-title" style={{ marginBottom: '8px' }}>AI Engineer & RAG Systems Architect</p>
-          <p className="hero-typewriter" style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.5', maxWidth: '90%' }}>
-            GenAI Engineer | Conversational AI | Agentic RAG Systems | LLM Fine-Tuning | LLMOps
-          </p>
+          <div className="rotating-tagline-container" style={{ maxWidth: '90%' }}>
+            <AnimatePresence mode="wait">
+              <motion.p
+                key={taglineIndex}
+                className="hero-typewriter"
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -15 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                style={{ color: 'var(--accent-cyan)', fontSize: '0.85rem', lineHeight: '1.5', fontWeight: 600, position: 'absolute', top: 0, left: 0, width: '100%' }}
+              >
+                {ROTATING_TAGLINES[taglineIndex]}
+              </motion.p>
+            </AnimatePresence>
+          </div>
 
           <div className="hero-actions">
             <a href="/Ambuj_Agentic_Gen_Ai_CV.pdf" target="_blank" className="btn-resume">📄 Resume</a>
@@ -232,32 +269,38 @@ export default function Home() {
 
 
         {/* ═══ AGGREGATED METRICS ═══ */}
-        <motion.div variants={itemVariants} className="bento-card card-metrics">
+        <motion.div 
+          className="bento-card card-metrics"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ type: 'spring', stiffness: 100, damping: 15 }}
+        >
           <div className="card-label">📈 Global Impact Metrics</div>
           <div className="metrics-strip">
             <div className="metric-item">
               <div className="metric-value">
                 <AnimatedCounter to={3} />
               </div>
-              <div className="metric-label">Live RAG Systems</div>
+              <div className="metric-label">🚀 Live RAG Systems</div>
             </div>
             <div className="metric-item">
               <div className="metric-value">
                 <AnimatedCounter to={31.5} decimals={1} /><span className="metric-suffix">K+</span>
               </div>
-              <div className="metric-label">Chunks Indexed</div>
+              <div className="metric-label">📦 Chunks Indexed</div>
             </div>
             <div className="metric-item">
               <div className="metric-value">
                 <AnimatedCounter to={3} />
               </div>
-              <div className="metric-label">Fine-Tuned LLMs</div>
+              <div className="metric-label">🧠 Fine-Tuned LLMs</div>
             </div>
             <div className="metric-item">
               <div className="metric-value">
                 <AnimatedCounter to={5.6} decimals={1} /><span className="metric-suffix">K+</span>
               </div>
-              <div className="metric-label">HF Downloads</div>
+              <div className="metric-label">🤗 HF Downloads</div>
             </div>
             <div className="metric-item" style={{ transition: 'transform 0.2s', cursor: 'pointer' }} onMouseOver={e => e.currentTarget.style.transform = 'scale(1.05)'} onMouseOut={e => e.currentTarget.style.transform = 'scale(1)'}>
               <a href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
@@ -274,7 +317,14 @@ export default function Home() {
         </motion.div>
 
         {/* ═══ SAAS FOOTER ═══ */}
-        <motion.div variants={itemVariants} className="card-footer" style={{ padding: '3rem 2rem 1rem' }}>
+        <motion.div 
+          className="card-footer" 
+          style={{ padding: '3rem 2rem 1rem' }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ type: 'spring', stiffness: 100, damping: 15, delay: 0.1 }}
+        >
           
           {/* Column 1: Brand & Connect Box (like reference image) */}
           <div className="footer-col" style={{ flex: '1 1 250px', minWidth: '250px' }}>
@@ -352,6 +402,9 @@ export default function Home() {
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#00ff66', boxShadow: '0 0 8px #00ff66' }} />
                 UptimeRobot Live Monitoring
               </a>
+            </div>
+            <div style={{ fontSize: '0.7rem', color: '#27272a', letterSpacing: '0.5px', textAlign: 'center' }}>
+              Built with Next.js · Framer Motion · Deployed on Vercel
             </div>
           </div>
 
