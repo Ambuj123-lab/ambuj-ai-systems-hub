@@ -30,6 +30,9 @@ export const metadata = {
     apple: '/og-image.jpeg',
   },
   robots: { index: true, follow: true },
+  verification: {
+    google: 'fxOa07w-yAhEUj0CTKjbGjZZNmffFNuuOC8Do7T9NGA',
+  },
 };
 
 export default function RootLayout({ children }) {
