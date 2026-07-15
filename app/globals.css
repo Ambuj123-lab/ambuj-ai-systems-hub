@@ -254,8 +254,8 @@ body {
 
 .hero-title {
   font-size: 0.95rem;
-  color: var(--accent-cyan);
-  font-weight: 600;
+  color: var(--text-secondary);
+  font-weight: 500;
   margin-bottom: 0.3rem;
 }
 
