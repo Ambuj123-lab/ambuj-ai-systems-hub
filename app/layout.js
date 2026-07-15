@@ -47,7 +47,7 @@ export default function RootLayout({ children }) {
               "@type": "Person",
               "name": "Ambuj Kumar Tripathi",
               "jobTitle": "AI Engineer & RAG Systems Architect",
-              "url": "https://ambuj-bento.vercel.app",
+              "url": "https://ambuj-ai-systems-hub.vercel.app",
               "sameAs": [
                 "https://www.linkedin.com/in/ambuj-tripathi-042b4a118/",
                 "https://github.com/Ambuj123-lab",
