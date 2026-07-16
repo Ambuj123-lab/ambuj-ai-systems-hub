@@ -200,7 +200,7 @@ export default function Home() {
             <div className="project-tag tag-financial">💰 Live System</div>
           )}
           <h2 className="project-impact"><span className="gradient-text">Adaptive ReAct</span> Omnichannel RAG Platform</h2>
-          <p className="project-desc">A 10-Node LangGraph Agent with LLM Tool Calling (Live APIs), dual-path web search, Pinecone hybrid search, and Meta WhatsApp Cloud API integration.</p>
+          <p className="project-desc">A 10-Node LangGraph Agent featuring Native LLM Function Calling (RapidAPI Yahoo Finance) for live market data, dual-path web search, Pinecone hybrid retrieval, and WhatsApp Cloud integration.</p>
           <div className="project-techs">
             <span>LangGraph</span><span>Tool Calling</span><span>FastAPI</span><span>Pinecone</span><span>Qwen</span><span>WhatsApp</span>
           </div>
