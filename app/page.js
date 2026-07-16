@@ -48,8 +48,8 @@ const TECH_STACK = [
 ];
 
 const ROTATING_TAGLINES = [
-  "Building 9-Node LangGraph Agents with Dual-Path Routing",
-  "5,600+ HuggingFace Downloads on Fine-Tuned Legal LLMs",
+  "Building 10-Node LangGraph Agents with Tool Calling & Routing",
+  "Optimizing GPU Memory with QLoRA & 4-bit Quantization",
   "Sub-100ms Semantic Caching with Redis Pipelines",
   "31,500+ Legal Vectors Indexed with Jina MRL Embeddings",
   "Production WhatsApp Bot via Meta Cloud API",
@@ -200,9 +200,9 @@ export default function Home() {
             <div className="project-tag tag-financial">💰 Live System</div>
           )}
           <h2 className="project-impact"><span className="gradient-text">Adaptive ReAct</span> Omnichannel RAG Platform</h2>
-          <p className="project-desc">A 9-Node LangGraph Agent with dual-path web search, Pinecone hybrid search, and Meta WhatsApp Cloud API integration.</p>
+          <p className="project-desc">A 10-Node LangGraph Agent with LLM Tool Calling (Live APIs), dual-path web search, Pinecone hybrid search, and Meta WhatsApp Cloud API integration.</p>
           <div className="project-techs">
-            <span>LangGraph</span><span>FastAPI</span><span>Pinecone</span><span>Qwen</span><span>WhatsApp</span>
+            <span>LangGraph</span><span>Tool Calling</span><span>FastAPI</span><span>Pinecone</span><span>Qwen</span><span>WhatsApp</span>
           </div>
           <a href="https://agentic-rag-financial-parser.onrender.com/" target="_blank" rel="noreferrer" className="project-link">Live Demo →</a>
         </motion.div>
