@@ -231,28 +231,14 @@ export default function Home() {
           <a href="https://huggingface.co/spaces/invincibleambuj/Agentic-AI-Legal-Assistant" target="_blank" rel="noreferrer" className="project-link">Live Demo →</a>
         </motion.div>
 
-        {/* ═══ PROJECT 3: Citizen Safety ═══ */}
+        {/* ═══ PROJECT 3: MCP Orchestrator ═══ */}
         <motion.div variants={itemVariants} className="bento-card card-project3">
-          {services.length > 0 && services.find(s => s[0] === 'Citizen Safety') ? (
-            (() => {
-              const data = services.find(s => s[0] === 'Citizen Safety')[1];
-              return (
-                <a href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1.5rem', background: 'rgba(0,0,0,0.6)', width: 'fit-content', padding: '6px 14px', borderRadius: '30px', border: '1px solid rgba(255,255,255,0.08)', cursor: 'pointer' }}>
-                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 16px #ff3366, 0 0 24px rgba(255,51,102,0.8)', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff3366" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                  <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#00f0ff', marginLeft: '4px' }}>{data.uptime}% <span style={{color: '#a1a1aa', fontWeight: 600}}>• {data.latency}ms</span></span>
-                </a>
-              );
-            })()
-          ) : (
-            <div className="project-tag tag-safety">🚨 Live System</div>
-          )}
-          <h2 className="project-impact"><span className="gradient-text">Secure Linear RAG</span> & PII Anonymization</h2>
-          <p className="project-desc">Deployed spaCy-driven trilingual routing with intelligent 112/100 emergency fallback signaling and PII anonymization.</p>
+          <div className="project-tag tag-safety">🌐 MCP System</div>
+          <h2 className="project-impact"><span className="gradient-text">Hybrid RAG</span> & MCP Orchestrator (V2)</h2>
+          <p className="project-desc">Architected a dynamic LangGraph Router and stateless FastMCP server over JSON-RPC 2.0. Fetches live RapidAPI (Stocks) and GitHub data with a React Generative UI (Recharts) for interactive data visualizations.</p>
           <div className="project-techs">
-            <span>Llama 70B</span><span>ChromaDB</span><span>spaCy</span><span>Trilingual</span>
+            <span>MCP</span><span>LangGraph</span><span>FastAPI</span><span>Generative UI</span>
           </div>
-          <a href="https://citizen-safety-ai-assistant.vercel.app/" target="_blank" rel="noreferrer" className="project-link">Live Demo →</a>
         </motion.div>
 
         {/* ═══ TECH STACK ═══ */}
