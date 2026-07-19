@@ -241,15 +241,69 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* ═══ TECH STACK ═══ */}
-        <motion.div variants={itemVariants} className="bento-card card-tech">
-          <div className="card-label">⚡ Engineering Stack</div>
-          <div className="tech-marquee-wrapper">
-            <div className="tech-marquee">
-              {[...TECH_STACK, ...TECH_STACK, ...TECH_STACK].map((t, i) => (
-                <span key={i}>{t}</span>
-              ))}
-            </div>
+        {/* ═══ 3D PARALLAX TECH STACK ═══ */}
+        <motion.div variants={itemVariants} className="bento-card card-tech" style={{ display: 'flex', flexDirection: 'column' }}>
+          <div className="card-label" style={{ marginBottom: '1.2rem' }}>⚡ Engineering Stack</div>
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(40px, 1fr))', 
+            gap: '15px', 
+            alignItems: 'center', 
+            justifyItems: 'center',
+            padding: '0.5rem',
+            flex: 1
+          }}>
+            {[
+              { name: 'Python', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg' },
+              { name: 'FastAPI', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg' },
+              { name: 'React', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
+              { name: 'Next.js', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg', filter: 'invert(1) brightness(0.8)' },
+              { name: 'MongoDB', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg' },
+              { name: 'Redis', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redis/redis-original.svg' },
+              { name: 'Docker', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg' },
+              { name: 'Google Cloud', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/googlecloud/googlecloud-original.svg' },
+              { name: 'Supabase', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/supabase/supabase-original.svg' },
+              { name: 'Git', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg' }
+            ].map((tech, i) => (
+              <motion.div
+                key={tech.name}
+                title={tech.name}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1, y: [0, -6, 0] }}
+                transition={{ 
+                  opacity: { duration: 0.5, delay: i * 0.05 },
+                  scale: { duration: 0.5, delay: i * 0.05 },
+                  y: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: i * 0.2 }
+                }}
+                whileHover={{ 
+                  scale: 1.35, 
+                  rotate: i % 2 === 0 ? 12 : -12,
+                  zIndex: 10,
+                  filter: "drop-shadow(0px 10px 15px rgba(0, 240, 255, 0.5))"
+                }}
+                style={{
+                  width: '42px',
+                  height: '42px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  perspective: '1000px',
+                  transformStyle: 'preserve-3d'
+                }}
+              >
+                <img 
+                  src={tech.url} 
+                  alt={tech.name} 
+                  style={{ 
+                    width: '100%', 
+                    height: '100%', 
+                    objectFit: 'contain',
+                    filter: tech.filter || 'none'
+                  }} 
+                />
+              </motion.div>
+            ))}
           </div>
         </motion.div>
 
