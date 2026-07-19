@@ -234,10 +234,10 @@ export default function Home() {
         {/* ═══ PROJECT 3: MCP Orchestrator ═══ */}
         <motion.div variants={itemVariants} className="bento-card card-project3">
           <div className="project-tag tag-safety">🌐 MCP System</div>
-          <h2 className="project-impact"><span className="gradient-text">Hybrid RAG</span> & MCP Orchestrator (V2)</h2>
-          <p className="project-desc">Architected a dynamic LangGraph Router and stateless FastMCP server over JSON-RPC 2.0. Fetches live RapidAPI (Stocks) and GitHub data with a React Generative UI (Recharts) for interactive data visualizations.</p>
+          <h2 className="project-impact"><span className="gradient-text">Agentic RAG</span> & MCP Orchestrator</h2>
+          <p className="project-desc">Architected a LangGraph Router and FastMCP server. Autonomously fetches live RapidAPI (Stocks), GitHub analytics, and executes dynamic Gmail operations via a secure HITL SMTP bypass.</p>
           <div className="project-techs">
-            <span>MCP</span><span>LangGraph</span><span>FastAPI</span><span>Generative UI</span>
+            <span>FastMCP Server</span><span>Gmail HITL</span><span>Live APIs</span><span>GenUI</span>
           </div>
         </motion.div>
 
