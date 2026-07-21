@@ -183,28 +183,15 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* ═══ PROJECT 1: Financial Parser ═══ */}
+        {/* ═══ PROJECT 1: MCP Orchestrator ═══ */}
         <motion.div variants={itemVariants} className="bento-card card-project1">
-          {services.length > 0 && services.find(s => s[0] === 'Financial Parser') ? (
-            (() => {
-              const data = services.find(s => s[0] === 'Financial Parser')[1];
-              return (
-                <a href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1.5rem', background: 'rgba(0,0,0,0.6)', width: 'fit-content', padding: '6px 14px', borderRadius: '30px', border: '1px solid rgba(255,255,255,0.08)', cursor: 'pointer' }}>
-                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 16px #ff3366, 0 0 24px rgba(255,51,102,0.8)', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff3366" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                  <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#00f0ff', marginLeft: '4px' }}>{data.uptime}% <span style={{color: '#a1a1aa', fontWeight: 600}}>• {data.latency}ms</span></span>
-                </a>
-              );
-            })()
-          ) : (
-            <div className="project-tag tag-financial">💰 Live System</div>
-          )}
-          <h2 className="project-impact"><span className="gradient-text">Adaptive ReAct</span> Omnichannel RAG Platform</h2>
-          <p className="project-desc">A 10-Node LangGraph Agent featuring LLM Function Calling for live market data, Pinecone hybrid retrieval, WhatsApp Cloud integration, and an autonomous CRON-driven Headless Agent for daily AI newsletters.</p>
+          <div className="project-tag tag-safety">🌐 MCP System</div>
+          <h2 className="project-impact"><span className="gradient-text">Agentic RAG</span> & MCP Orchestrator</h2>
+          <p className="project-desc">Architected a LangGraph Router and FastMCP server. Autonomously fetches live RapidAPI (Stocks), GitHub analytics, and executes dynamic Gmail operations via a secure HITL SMTP bypass.</p>
           <div className="project-techs">
-            <span>LangGraph</span><span>Tool Calling</span><span>CRON Agent</span><span>FastAPI</span><span>Pinecone</span><span>WhatsApp</span>
+            <span>FastMCP Server</span><span>Gmail HITL</span><span>Live APIs</span><span>GenUI</span>
           </div>
-          <a href="https://agentic-rag-financial-parser.onrender.com/" target="_blank" rel="noreferrer" className="project-link">Live Demo →</a>
+          <a href="https://agentic-ai-workspace.onrender.com" target="_blank" rel="noreferrer" className="project-link">Live Demo →</a>
         </motion.div>
 
         {/* ═══ PROJECT 2: Legal AI ═══ */}
@@ -231,14 +218,28 @@ export default function Home() {
           <a href="https://huggingface.co/spaces/invincibleambuj/Agentic-AI-Legal-Assistant" target="_blank" rel="noreferrer" className="project-link">Live Demo →</a>
         </motion.div>
 
-        {/* ═══ PROJECT 3: MCP Orchestrator ═══ */}
+        {/* ═══ PROJECT 3: Financial Parser ═══ */}
         <motion.div variants={itemVariants} className="bento-card card-project3">
-          <div className="project-tag tag-safety">🌐 MCP System</div>
-          <h2 className="project-impact"><span className="gradient-text">Agentic RAG</span> & MCP Orchestrator</h2>
-          <p className="project-desc">Architected a LangGraph Router and FastMCP server. Autonomously fetches live RapidAPI (Stocks), GitHub analytics, and executes dynamic Gmail operations via a secure HITL SMTP bypass.</p>
+          {services.length > 0 && services.find(s => s[0] === 'Financial Parser') ? (
+            (() => {
+              const data = services.find(s => s[0] === 'Financial Parser')[1];
+              return (
+                <a href="https://stats.uptimerobot.com/4tYmSQnuBE" target="_blank" rel="noreferrer" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '1.5rem', background: 'rgba(0,0,0,0.6)', width: 'fit-content', padding: '6px 14px', borderRadius: '30px', border: '1px solid rgba(255,255,255,0.08)', cursor: 'pointer' }}>
+                  <div style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#ff3366', boxShadow: '0 0 16px #ff3366, 0 0 24px rgba(255,51,102,0.8)', animation: 'heartbeat 1.5s ease-in-out infinite' }} />
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#ff3366" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                  <span style={{ fontSize: '0.75rem', fontWeight: 700, color: '#00f0ff', marginLeft: '4px' }}>{data.uptime}% <span style={{color: '#a1a1aa', fontWeight: 600}}>• {data.latency}ms</span></span>
+                </a>
+              );
+            })()
+          ) : (
+            <div className="project-tag tag-financial">💰 Live System</div>
+          )}
+          <h2 className="project-impact"><span className="gradient-text">Adaptive ReAct</span> Omnichannel RAG Platform</h2>
+          <p className="project-desc">A 10-Node LangGraph Agent featuring LLM Function Calling for live market data, Pinecone hybrid retrieval, WhatsApp Cloud integration, and an autonomous CRON-driven Headless Agent for daily AI newsletters.</p>
           <div className="project-techs">
-            <span>FastMCP Server</span><span>Gmail HITL</span><span>Live APIs</span><span>GenUI</span>
+            <span>LangGraph</span><span>Tool Calling</span><span>CRON Agent</span><span>FastAPI</span><span>Pinecone</span><span>WhatsApp</span>
           </div>
+          <a href="https://agentic-rag-financial-parser.onrender.com/" target="_blank" rel="noreferrer" className="project-link">Live Demo →</a>
         </motion.div>
 
         {/* ═══ 3D PARALLAX TECH STACK ═══ */}
